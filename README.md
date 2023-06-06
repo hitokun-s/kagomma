@@ -6,7 +6,7 @@ kagomma.i is a chatbot that can reply to any message with Kagoshima information 
 
 running site: https://kagomma.info
 
-I launched this site 2023 May, maybe will stop in a few months(sorry!).
+I launched this site 2023 May, maybe will stop in a few months(sorry!).  
 If you're interested, you can launch this locally like below.
 
 ## technologies
@@ -25,7 +25,7 @@ docker-compose -f docker-compose.local.yml up -d
 ```
 => http://localhost
 
-![screen.png](frontend/public/img/screen.png)
+![screen.png](frontend/public/img/screen.jpg)
 
 ## license
 

@@ -21,7 +21,7 @@ pnpm run dev
 ```
 => `http://localhost:3000`
 
-![screen.png](public/img/screen.png)
+![screen.png](public/img/screen.jpg)
 
 
 ## refs
