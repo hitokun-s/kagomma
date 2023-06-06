@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api:
+    image: api
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+  app:
+    image: app
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - env_var_name=./frontend/.env.production
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile_local
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+      - api
+    container_name: web
+    restart: always
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379

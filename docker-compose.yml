@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  api:
+    image: api
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+  app:
+    image: app
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - env_var_name=./frontend/.env.production
+  web:
+    build:
+      context: ./web
+    ports:
+      - "80:80"
+      - 443:443
+    depends_on:
+      - app
+    container_name: web
+    restart: always
+    volumes:
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    command: ["--version"]
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
